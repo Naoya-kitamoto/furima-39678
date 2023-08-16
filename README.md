@@ -36,12 +36,12 @@ Things you may want to cover:
 |last_name_kana     |string     |null: false              |
 |birth_day          |date       |null: false              |
 has_many :items
-has_many :purchases
+has_one :purchases
 
 ## itemsテーブル
 |Column             |Type       |Options                  |
 |-------------------|-----------|-------------------------|
-|user               |references |foreign_key: true        |
+|user               |references |foreign_key: true null: false |
 |item_name          |string     |null: false              |
 |explanation        |text       |null: false              |
 |category_id        |integer    |null: false              |
@@ -56,9 +56,8 @@ belongs_to :purchase
 ## purchasesテーブル
 |Column             |Type       |Options                   |
 |-------------------|-----------|--------------------------|
-|user               |references |foreign_key: true         |
-|item               |references |foreign_key: true         |
-|address            |references |foreign_key: true         |
+|user               |references |foreign_key: true null: false |
+|item               |references |foreign_key: true null: false |
 belongs_to :user
 belongs_to :item
 belongs_to :address
@@ -67,9 +66,10 @@ belongs_to :address
 |Column             |Type       |Options                  |
 |-------------------|-----------|-------------------------|
 |post_code          |string     |null: false              |
-|prefecture         |string     |null: false              |
+|prefecture_id      |integer    |null: false              |
 |municipalities     |string     |null: false              |
 |street_address     |string     |null: false              |
 |building_name      |string     |                         |
 |phone_number       |string     |null: false              |
+|purchase           |references|foreign_key: true null: false |
 belongs_to :purchase
