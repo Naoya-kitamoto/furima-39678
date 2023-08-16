@@ -36,7 +36,7 @@ Things you may want to cover:
 |last_name_kana     |string     |null: false              |
 |birth_day          |date       |null: false              |
 has_many :items
-has_one :purchases
+has_many :purchases
 
 ## itemsテーブル
 |Column             |Type       |Options                  |
@@ -48,10 +48,10 @@ has_one :purchases
 |condition_id       |integer    |null: false              |
 |sender_id          |integer    |null: false              |
 |delivery_charge_id |integer    |null: false              |
-|delivery_days_id   |integer    |null: false              |
+|delivery_day_id    |integer    |null: false              |
 |price              |integer    |null: false              |
 belongs_to :user
-belongs_to :purchase
+has_one :purchase
 
 ## purchasesテーブル
 |Column             |Type       |Options                   |
@@ -60,7 +60,7 @@ belongs_to :purchase
 |item               |references |foreign_key: true null: false |
 belongs_to :user
 belongs_to :item
-belongs_to :address
+has_one :address
 
 ## addressesテーブル
 |Column             |Type       |Options                  |
@@ -71,5 +71,5 @@ belongs_to :address
 |street_address     |string     |null: false              |
 |building_name      |string     |                         |
 |phone_number       |string     |null: false              |
-|purchase           |references|foreign_key: true null: false |
+|purchase           |references |foreign_key: true null: false |
 belongs_to :purchase
