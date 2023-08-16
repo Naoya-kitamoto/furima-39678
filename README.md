@@ -24,48 +24,52 @@ Things you may want to cover:
 * ...
 
 
-## users
-|Column             |Type    |Options                  |
-|nickname           |string  |null: false              |
-|email              |string  |null: false unique: true |
-|password           |string  |null: false              |
-|encrypted_password |string  |null: false              |
-|first_name         |string  |null: false              |
-|last_name          |string  |null: false              |
-|first_name_kana    |string  |null: false              |
-|last_name_kana     |string  |null: false              |
-|birth_day          |integer |null: false              |
+## usersテーブル
+|Column             |Type       |Options                  |
+|-------------------|-----------|-------------------------|
+|nickname           |string     |null: false              |
+|email              |string     |null: false unique: true |
+|encrypted_password |string     |null: false              |
+|first_name         |string     |null: false              |
+|last_name          |string     |null: false              |
+|first_name_kana    |string     |null: false              |
+|last_name_kana     |string     |null: false              |
+|birth_day          |date       |null: false              |
 has_many :items
 has_many :purchases
 
-## items
-|Column             |Type    |Options                  |
-|user_id            |integer |foreign_key: true        |
-|image              |string  |null: false              |
-|item_name          |string  |null: false              |
-|explanation        |text    |null: false              |
-|category_id        |integer |null: false              |
-|condition          |string  |null: false              |
-|sender_id          |integer |null: false              |
-|delivery_charge_id |integer |null: false              |
-|delivery_days_id   |integer |null: false              |
-|price              |integer |null: false              |
+## itemsテーブル
+|Column             |Type       |Options                  |
+|-------------------|-----------|-------------------------|
+|user               |references |foreign_key: true        |
+|item_name          |string     |null: false              |
+|explanation        |text       |null: false              |
+|category_id        |integer    |null: false              |
+|condition_id       |integer    |null: false              |
+|sender_id          |integer    |null: false              |
+|delivery_charge_id |integer    |null: false              |
+|delivery_days_id   |integer    |null: false              |
+|price              |integer    |null: false              |
 belongs_to :user
-belongs_to :purchases
+belongs_to :purchase
 
-## purchases
-|Column             |Type   |Options                   |
-|user               |string |foreign_key: true         |
-|item               |string |foreign_key: true         |
+## purchasesテーブル
+|Column             |Type       |Options                   |
+|-------------------|-----------|--------------------------|
+|user               |references |foreign_key: true         |
+|item               |references |foreign_key: true         |
+|address            |references |foreign_key: true         |
 belongs_to :user
 belongs_to :item
+belongs_to :address
 
-## addresses
-|Column             |Type    |Options                  |
-|post_code          |integer |null: false              |
-|prefecture         |string  |null: false              |
-|municipalities     |string  |null: false              |
-|street_address     |integer |null: false              |
-|building_name      |string  |null: false              |
-|phone_number       |integer |null: false              |
-belongs_to :purchases
+## addressesテーブル
+|Column             |Type       |Options                  |
+|-------------------|-----------|-------------------------|
+|post_code          |string     |null: false              |
+|prefecture         |string     |null: false              |
+|municipalities     |string     |null: false              |
+|street_address     |string     |null: false              |
+|building_name      |string     |                         |
+|phone_number       |string     |null: false              |
+belongs_to :purchase
