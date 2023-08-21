@@ -11,8 +11,9 @@ class User < ApplicationRecord
     format: { with: /\A[\p{katakana}ー－]+\z/ }
     validates :first_name_kana,  presence: true,
     format: { with: /\A[\p{katakana}ー－]+\z/ }
-    validates :birth_day,        presence: true
-
+    validates :birth_day,        presence: true 
+    validates :password, format: { with: /\A(?=.*[a-zA-Z])(?=.*\d)/, message: "must include at least one letter and one number" }
+    
     has_many :items
     has_many :purchases
 end
