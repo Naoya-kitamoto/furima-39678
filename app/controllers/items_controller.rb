@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).parmit(:image, :item_name, :explanation, :category_id, :condition_id, :sender_id, :delivery_charge_id, :delivery_day_id, :price).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :item_name, :explanation, :category_id, :condition_id, :sender_id, :delivery_charge_id, :delivery_day_id, :price).merge(user_id: current_user.id)
   end
 
   def move_to_log_in
