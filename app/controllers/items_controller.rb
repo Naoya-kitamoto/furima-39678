@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :move_to_log_in, only: :new
   def index
     @items = Item.all
   end
@@ -19,6 +20,12 @@ class ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).parmit(:image, :item_name, :explanation, :category_id, :condition_id, :sender_id, :delivery_charge_id, :delivery_day_id, :price).merge(user_id: current_user.id)
+  end
+
+  def move_to_log_in
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
   end
 
 end
