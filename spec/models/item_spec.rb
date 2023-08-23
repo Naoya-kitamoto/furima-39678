@@ -41,12 +41,12 @@ RSpec.describe Item, type: :model do
       it "delivery_charge_idが空では出品できない" do
         @item.delivery_charge_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery charge can't be blank","Delivery charge can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
       end
       it "delivery_day_idが空だと出品できない" do
         @item.delivery_day_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery day can't be blank", "Delivery day can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery day can't be blank")
       end
       it "priceが空では出品できない" do
         @item.price = ''
