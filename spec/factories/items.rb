@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :item do
+    association :user
     item_name{Faker::Name.name}
     explanation{"ツルツルです"}
     category_id{3}
