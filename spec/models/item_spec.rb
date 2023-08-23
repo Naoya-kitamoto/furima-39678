@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-    
   end
 
 
@@ -98,6 +97,11 @@ RSpec.describe Item, type: :model do
         @item.price = "こんにちは"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is enter between 299 and 1000000")
+      end
+      it "userが紐づいていない場合登録できない" do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
