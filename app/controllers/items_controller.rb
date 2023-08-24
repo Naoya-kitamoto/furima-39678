@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_log_in, only: [:new, :edit]
-  before_action :move_to_top_page, only: :edit
+  before_action :move_to_top_page, only: [:edit, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   def index
     @items = Item.includes(:user).order("created_at DESC")
