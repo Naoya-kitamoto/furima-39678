@@ -1,6 +1,6 @@
 class PurchaseAddress
   include ActiveModel::Model
-  attr_accessor :post_code, :prefecture, :municipalities, :street_address, :building_name, :phone_number, :user_id, :item_id
+  attr_accessor :post_code, :sender_id, :municipalities, :street_address, :building_name, :phone_number, :user_id, :item_id
 
   with_options presence: true do
     validates :municipalities
