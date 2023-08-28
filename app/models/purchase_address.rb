@@ -1,11 +1,14 @@
-class DonationAddress
+class PurchaseAddress
   include ActiveModel::Model
   attr_accessor :post_code, :prefecture, :municipalities, :street_address, :building_name, :phone_number, :user_id, :item_id
 
   with_options presence: true do
     validates :municipalities
     validates :street_address
-    validates :phone_number
+    validates :phone_number, format: {
+      with: /\A(\d{10,11}|\d{3}-\d{4}\d-{4})\z/,
+      message: "is invalid. Must be 10 to 11 digits or Include hyphen(-)"
+    }
     validates :user_id
     validates :item_id
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
