@@ -6,7 +6,7 @@ class PurchaseAddress
     validates :municipalities
     validates :street_address
     validates :phone_number, format: {
-      with: /\A(\d{10,11}|\d{3}-\d{4}\d-{4})\z/,
+      with: /\A\d{10,11}\z/,
       message: "is invalid. Must be 10 to 11 digits or Include hyphen(-)"
     }
     validates :user_id
