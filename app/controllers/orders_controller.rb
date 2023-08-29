@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :find_item, only: [:index, :create]
   before_action :back_to_top_page, only: :index
   before_action :back_to_log_in, only: :index
+  before_action :sold_out_items, only: :index
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -15,6 +16,7 @@ class OrdersController < ApplicationController
       @purchase_address.save
       redirect_to root_path
     else
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index, status: :unprocessable_entity
     end
   end
@@ -47,6 +49,12 @@ class OrdersController < ApplicationController
   def back_to_log_in
     unless user_signed_in?
       redirect_to new_user_session_path
+    end
+  end
+
+  def sold_out_items
+    if @item.purchase.present?
+      redirect_to root_path
     end
   end
 end

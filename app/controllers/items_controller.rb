@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :move_to_log_in, only: [:new, :edit]
   before_action :move_to_top_page, only: [:edit, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :sold_out_item, only: :edit
   def index
     @items = Item.includes(:user).order("created_at DESC")
   end
@@ -55,6 +56,12 @@ class ItemsController < ApplicationController
   def move_to_top_page
     set_item
     if user_signed_in? && current_user.id != @item.user_id
+      redirect_to root_path
+    end
+  end
+
+  def sold_out_item
+    if @item.purchase.present?
       redirect_to root_path
     end
   end

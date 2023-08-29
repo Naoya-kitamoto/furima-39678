@@ -16,5 +16,5 @@ class User < ApplicationRecord
     validates :birth_day,        presence: true 
     PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
     validates_format_of :password, with: PASSWORD_REGEX, message: "must include at least one letter and one number"
-    #has_many :purchases
+    has_many :purchases
 end
