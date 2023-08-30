@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: :index
   before_action :find_item, only: [:index, :create]
   before_action :back_to_top_page, only: :index
   before_action :back_to_log_in, only: :index
