@@ -1,7 +1,10 @@
 FactoryBot.define do
   factory :purchase_address do
+    user_id { FactoryBot.create(:user).id }
+    item_id { FactoryBot.create(:item).id }
     municipalities{"川崎市"}
     street_address{"5-5-5"}
+    building_name{"ヨーロッパビル"}
     phone_number{"09009000900"}
     post_code{"123-4567"}
     sender_id{14}
